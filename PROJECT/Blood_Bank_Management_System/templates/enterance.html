@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Blood Fetcher Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(to right, #e53935, #e35d5b);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .intro-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .intro-text {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .intro-text h2 {
+            color: #e53935;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .intro-text p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .features {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .features h2 {
+            color: #e53935;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .feature-list {
+            list-style-type: none;
+        }
+        
+        .feature-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-list li::before {
+            content: "•";
+            color: #e53935;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+        
+        .buttons-section {
+            text-align: center;
+            margin: 50px 0;
+        }
+        
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .action-btn {
+            display: inline-block;
+            padding: 18px 35px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            min-width: 220px;
+            text-align: center;
+        }
+        
+        .user-register {
+            background: linear-gradient(to right, #4CAF50, #66BB6A);
+            color: white;
+        }
+        
+        .hospital-register {
+            background: linear-gradient(to right, #2196F3, #42A5F5);
+            color: white;
+        }
+        
+        .hospital-login {
+            background: linear-gradient(to right, #FF9800, #FFB74D);
+            color: white;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .workflow-section {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-top: 40px;
+        }
+        
+        .workflow-section h2 {
+            text-align: center;
+            color: #e53935;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+        
+        .workflow-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .step-icon {
+            font-size: 2.5rem;
+            color: #e53935;
+            margin-bottom: 15px;
+        }
+        
+        .step h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .action-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Emergency Blood Fetcher Management System</h1>
+            <p class="tagline">Connecting blood donors with hospitals in need - saving lives together</p>
+        </header>
+        
+        <section class="intro-section">
+            <div class="intro-text">
+                <h2>About the System</h2>
+                <p>The Emergency Blood Fetcher Management System is a life-saving platform that connects voluntary blood donors with hospitals during medical emergencies.</p>
+                <p>Our system helps hospitals quickly find compatible blood donors in their area when they need it most, reducing critical response time and potentially saving lives.</p>
+                <p>By registering as a donor, you join a network of lifesavers ready to help when emergencies arise. Hospitals can efficiently manage blood requests and maintain donation records.</p>
+            </div>
+            
+            <div class="features">
+                <h2>Key Features</h2>
+                <ul class="feature-list">
+                    <li>Donor registration with OTP verification</li>
+                    <li>Hospital registration and secure login</li>
+                    <li>Search donors by location and blood group</li>
+                    <li>Send emergency blood requests via email</li>
+                    <li>Donation confirmation with OTP system</li>
+                    <li>Automatic 90-day donor mute after donation</li>
+                    <li>Complete blood donation history records</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="buttons-section">
+            <h2>Get Started</h2>
+            <div class="buttons-container">
+                <a href="signup/" class="action-btn user-register">Register as Donor</a>
+                <a href="hospital/signup/" class="action-btn hospital-register">Hospital Registration</a>
+                <a href="login/" class="action-btn hospital-login">Hospital Login</a>
+            </div>
+        </section>
+        
+        <section class="workflow-section">
+            <h2>How It Works</h2>
+            <div class="workflow-steps">
+                <div class="step">
+                    <div class="step-icon">👤</div>
+                    <h3>Register</h3>
+                    <p>Donors provide details like name, age, blood group, and location. Hospitals register with their information.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">🏥</div>
+                    <h3>Request</h3>
+                    <p>Hospitals search for donors by location and blood type, then send emergency requests.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">✅</div>
+                    <h3>Confirm</h3>
+                    <p>Donors confirm donation via OTP. System records the transaction and mutes donor for 90 days.</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>Emergency Blood Fetcher Management System &copy; 2025 | Saving Lives Through Technology</p>
+        </footer>
+    </div>
+</body>
+</html>

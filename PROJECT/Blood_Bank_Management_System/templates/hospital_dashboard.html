@@ -1,0 +1,224 @@
+<!-- {% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hospital Donor Panel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Hospital Donor Dashboard</h2>
+
+    <!-- Filters 
+    <form method="get" class="row mb-4">
+        <div class="col-md-3">
+            <select name="blood_group" class="form-select">
+                <option value="All" {% if selected_blood_group == "All" %}selected{% endif %}>All Blood Groups</option>
+                <option value="A+" {% if selected_blood_group == "A+" %}selected{% endif %}>A+</option>
+                <option value="A-" {% if selected_blood_group == "A-" %}selected{% endif %}>A-</option>
+                <option value="B+" {% if selected_blood_group == "B+" %}selected{% endif %}>B+</option>
+                <option value="B-" {% if selected_blood_group == "B-" %}selected{% endif %}>B-</option>
+                <option value="O+" {% if selected_blood_group == "O+" %}selected{% endif %}>O+</option>
+                <option value="O-" {% if selected_blood_group == "O-" %}selected{% endif %}>O-</option>
+                <option value="AB+" {% if selected_blood_group == "AB+" %}selected{% endif %}>AB+</option>
+                <option value="AB-" {% if selected_blood_group == "AB-" %}selected{% endif %}>AB-</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <input type="text" name="pincode" placeholder="Filter by Pincode" class="form-control" value="{{ request.GET.pincode }}">
+        </div>
+        <div class="col-md-3">
+            <input type="text" name="search" placeholder="Search by Name" class="form-control" value="{{ search_query }}">
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary">Apply</button>
+        </div>
+    </form>
+    <form method="post" action="{% url 'send_email_to_filtered' %}">
+    {% csrf_token %}
+    <!-- preserve filters 
+    <input type="hidden" name="blood_group" value="{{ selected_blood_group }}">
+    <input type="hidden" name="pincode" value="{{ request.GET.pincode }}">
+    <input type="hidden" name="search" value="{{ search_query }}">
+    <button type="submit" class="btn btn-danger mb-3">
+        Send Email to All (Filtered Donors)
+    </button>
+</form>
+
+    <!-- Sorting 
+    <div class="mb-3">
+        <a href="?sort_by=age" class="btn btn-outline-secondary btn-sm">Sort by Age</a>
+        <a href="?sort_by=blood_group" class="btn btn-outline-secondary btn-sm">Sort by Blood Group</a>
+        <a href="?sort_by=pincode" class="btn btn-outline-secondary btn-sm">Sort by Pincode</a>
+    </div>
+
+    <!-- Donor Table 
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Blood Group</th>
+                <th>Contact Number</th>
+                <th>Pincode</th>
+                <th>Phone Verified</th>
+                <th>Action</th>
+                <th>Marked as Donate</th>
+                <th>History</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in donors %}
+            <tr>
+                <td>{{ row.donor.user.username }}</td>
+                <td>{{ row.donor.age }}</td>
+                <td>{{ row.donor.gender }}</td>
+                <td>{{ row.donor.blood_group }}</td>
+                <td>{{ row.donor.contact_number }}</td>
+                <td>{{ row.donor.pincode }}</td>
+                <td>{% if row.donor.user.is_active %}✅{% else %}❌{% endif %}</td>
+                <td>
+                    <form method="post" action="{% url 'send_email_to_donor' row.donor.user.id request.user.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-success">Send Email</button>
+                    </form>
+                </td>
+                <td>
+                    {% if row.can_donate %}
+                        <form method="post" action="{% url 'send_otp_to_donor' row.donor.user.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-warning">Mark as Donated</button>
+                        </form>
+                    {% else %}
+                        <button class="btn btn-sm btn-secondary" disabled>Not Eligible (90 Days)</button>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'donation_history' row.donor.user.id %}" 
+                    class="btn btn-sm btn-info">History</a>
+                </td>
+
+            </tr>
+            {% empty %}
+            <tr><td colspan="9">No donors found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html> -->
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hospital Blood Donor Panel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Hospital Blood Donor Dashboard</h2>
+
+    <!-- Filters -->
+    <form method="get" class="row mb-4">
+        <div class="col-md-3">
+            <select name="blood_group" class="form-select">
+                <option value="All" {% if selected_blood_group == "All" %}selected{% endif %}>All Blood Groups</option>
+                <option value="A+" {% if selected_blood_group == "A+" %}selected{% endif %}>A+</option>
+                <option value="A-" {% if selected_blood_group == "A-" %}selected{% endif %}>A-</option>
+                <option value="B+" {% if selected_blood_group == "B+" %}selected{% endif %}>B+</option>
+                <option value="B-" {% if selected_blood_group == "B-" %}selected{% endif %}>B-</option>
+                <option value="O+" {% if selected_blood_group == "O+" %}selected{% endif %}>O+</option>
+                <option value="O-" {% if selected_blood_group == "O-" %}selected{% endif %}>O-</option>
+                <option value="AB+" {% if selected_blood_group == "AB+" %}selected{% endif %}>AB+</option>
+                <option value="AB-" {% if selected_blood_group == "AB-" %}selected{% endif %}>AB-</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <input type="text" name="pincode" placeholder="Filter by Pincode" class="form-control" value="{{ request.GET.pincode }}">
+        </div>
+        <div class="col-md-3">
+            <input type="text" name="search" placeholder="Search by Name" class="form-control" value="{{ search_query }}">
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary w-100">Apply</button>
+        </div>
+    </form>
+
+    <!-- ✅ Show Send Email only if there are donors -->
+    {% if donors %}
+    <form method="post" action="{% url 'send_email_to_filtered' %}">
+        {% csrf_token %}
+        <!-- preserve filters -->
+        <input type="hidden" name="blood_group" value="{{ selected_blood_group }}">
+        <input type="hidden" name="pincode" value="{{ request.GET.pincode }}">
+        <input type="hidden" name="search" value="{{ search_query }}">
+        <button type="submit" class="btn btn-danger mb-3">
+            Send Email to All (Filtered Donors)
+        </button>
+    </form>
+    {% endif %}
+
+    <!-- Sorting -->
+    <div class="mb-3">
+        <a href="?sort_by=age" class="btn btn-outline-secondary btn-sm">Sort by Age</a>
+        <a href="?sort_by=blood_group" class="btn btn-outline-secondary btn-sm">Sort by Blood Group</a>
+        <a href="?sort_by=pincode" class="btn btn-outline-secondary btn-sm">Sort by Pincode</a>
+    </div>
+
+    <!-- Donor Table -->
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Blood Group</th>
+                <th>Contact Number</th>
+                <th>Pincode</th>
+                <th>Phone Verified</th>
+                <th>Action</th>
+                <th>Marked as Donate</th>
+                <th>History</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in donors %}
+            <tr>
+                <td>{{ row.donor.user.username }}</td>
+                <td>{{ row.donor.age }}</td>
+                <td>{{ row.donor.gender }}</td>
+                <td>{{ row.donor.blood_group }}</td>
+                <td>{{ row.donor.contact_number }}</td>
+                <td>{{ row.donor.pincode }}</td>
+                <td>{% if row.donor.user.is_active %}✅{% else %}❌{% endif %}</td>
+                <td>
+                    <form method="post" action="{% url 'send_email_to_donor' row.donor.user.id request.user.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-success">Send Email</button>
+                    </form>
+                </td>
+                <td>
+                    {% if row.can_donate %}
+                        <form method="post" action="{% url 'send_otp_to_donor' row.donor.user.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-warning">Mark as Donated</button>
+                        </form>
+                    {% else %}
+                        <button class="btn btn-sm btn-secondary" disabled>Not Eligible (90 Days)</button>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'donation_history' row.donor.user.id %}" class="btn btn-sm btn-info">History</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="10">No donors found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

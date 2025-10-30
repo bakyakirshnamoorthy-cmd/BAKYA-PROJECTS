@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Successful</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #ffe5e5, #ffcccc);
+            font-family: 'Arial', sans-serif;
+        }
+        .success-container {
+            max-width: 600px;
+            margin: 100px auto;
+        }
+        .card {
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            background-color: #fff;
+            text-align: center;
+        }
+        h1 {
+            color: #b71c1c;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+        a.btn-login {
+            background-color: #b71c1c;
+            color: #fff;
+            font-weight: bold;
+            padding: 12px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        a.btn-login:hover {
+            background-color: #d32f2f;
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="card">
+            <h1>User {{ request.user }} was successfully registered!</h1>
+            <p>Welcome to <strong>Emergency Blood Fetcher Management System</strong></p>
+            <a href="{% url 'donor_signup' %}" class="btn-login mt-3">Click here to login</a>
+        </div>
+    </div>
+</body>
+</html>
